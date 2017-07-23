@@ -18,6 +18,7 @@ end
 get '/words' do
     # content is set to JSON
     content_type :json
+    
     # the database will return all the results as a JSON array
     settings.collection.find().to_a.to_json
 end
@@ -27,6 +28,7 @@ put '/words' do
     # sets up the document that will be saved into MongoDB
     # grabs the word and the description from the HTML input boxes
     doc = {word: params[:word], definition: params[:definition]}
+    
     # it will save one document into the database as a JSON document
     settings.collection.insert_one(doc).to_json
 end
