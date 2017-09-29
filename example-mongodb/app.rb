@@ -1,35 +1,32 @@
 require 'sinatra'
 require 'mongo'
 
-# configure the MongoDB database and set the collection 
-# to "words" which will hold a word and its description 
-configure do 
-    client = Mongo::Client.new(ENV["MONGODB_URI"], :ssl => true, :ssl_verify => false)
-    set :collection, client['words']
-end
+compose_mongodb_url = ENV['COMPOSE_MONGODB_URL']
+compose_mongodb_cert = ENV['PATH_TO_MONGODB_CERT']
+
+
+# set up a new client using your Compose MongoDB URL and then use the 'words' collection
+client = Mongo::Client.new(compose_mongodb_url, ssl: true, ssl_ca_cert: compose_mongodb_cert)
+collection = client['words']
 
 # This will allow the index.html file to be loaded
 get '/' do 
     File.read(File.join('public', 'index.html'))
 end
 
-# The GET route will return the words and their description
-# from the MongoDB database
+# The GET route will return the words and their definition
 get '/words' do
-    # content is set to JSON
+    # content is set to application/json
     content_type :json
-    
     # the database will return all the results as a JSON array
-    settings.collection.find().to_a.to_json
+    collection.find().to_a.to_json
 end
 
-# The PUT route will save a word and its description into MongoDB
+# The PUT route will save a word and its definition
 put '/words' do
-    # sets up the document that will be saved into MongoDB
-    # grabs the word and the description from the HTML input boxes
-    doc = {word: params[:word], definition: params[:definition]}
-    
-    # it will save one document into the database as a JSON document
-    settings.collection.insert_one(doc).to_json
+    # when the 'Add' button is clicked it will create a new document to send to the database
+    # params[:] grabs the word and the description from the HTML input boxes
+    new_word = {word: params[:word], definition: params[:definition]}
+    collection.insert_one(new_word)
 end
 

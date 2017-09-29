@@ -2,7 +2,7 @@
 <html>
 
   <head>
-    <title>Ruby/Compose grandtour MongoDB application</title>
+    <title>Ruby/Compose grandtour RabbitMQ application</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,21 +19,26 @@
         </td>
         <td>
           <h1 id="message">Hello World!</h1>
-          <p class="description">Thanks for creating a <a href=""><span class = "blue">Ruby/Compose grandtour MongoDB application</span></a>.</p>
-          <h2>Add a word to the database</h2>
-          <form id="add-word">
-            The word <input type="text" name="word" value="hello"/>
-            is defined as <input type="text" name="definition" value="a greeting" />
-            <input type="submit" value="Add" />
+          <p class="description">Thanks for creating a <a href=""><span class = "blue">Ruby/Compose grandtour RabbitMQ application</span></a> sample application.</p>
+          <h2>Send a message</h2>
+          <form id="sendMessage">
+            Send a message to the queue: <input type="text" name="message" value="hello world"/>
+            <input type="submit" value="send" />
           </form>
         </td>
       </tr>
-      <tr class="hidden">
+      <tr>
         <td />
         <td>
           <p class="description">
-            <h2>Database output</h2>
-            <pre id="displayOutput"></pre>
+            <h2>Receive messages</h2>
+            <form id="receiveMessage">
+              Receive a message from the queue:
+              <input type="submit" value="receive" />
+            </form>
+            <pre>
+            <ul id="receivedMessages"</ul>
+            </pre>
           </p>
         </td>
       </tr>

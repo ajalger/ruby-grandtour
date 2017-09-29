@@ -1,0 +1,41 @@
+GIT
+  remote: https://github.com/elastic/elasticsearch-ruby/
+  revision: 8fbcd5daf9a61a212a3334414b3852c1a0af6a53
+  branch: 5.x
+  specs:
+    elasticsearch (5.0.4)
+      elasticsearch-api (= 5.0.4)
+      elasticsearch-transport (= 5.0.4)
+    elasticsearch-api (5.0.4)
+      multi_json
+    elasticsearch-transport (5.0.4)
+      faraday
+      multi_json
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    faraday (0.13.1)
+      multipart-post (>= 1.2, < 3)
+    multi_json (1.12.2)
+    multipart-post (2.0.0)
+    mustermann (1.0.1)
+    rack (2.0.3)
+    rack-protection (2.0.0)
+      rack
+    sinatra (2.0.0)
+      mustermann (~> 1.0)
+      rack (~> 2.0)
+      rack-protection (= 2.0.0)
+      tilt (~> 2.0)
+    tilt (2.0.8)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  elasticsearch!
+  sinatra
+
+BUNDLED WITH
+   1.15.4

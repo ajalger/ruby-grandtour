@@ -1,0 +1,4 @@
+source "http://rubygems.org/"
+
+gem 'sinatra'
+gem 'elasticsearch', git: 'https://github.com/elastic/elasticsearch-ruby/', branch: '5.x'
