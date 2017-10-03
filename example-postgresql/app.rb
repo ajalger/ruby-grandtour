@@ -16,7 +16,7 @@ conn = PG::Connection.new(
     port: uri.port,
     user: uri.user,
     password: uri.password,
-    dbname: 'grand_tour',
+    dbname: 'example',
     sslmode: 'require',
     sslrootcert: compose_postgresql_cert
 )
@@ -40,7 +40,7 @@ get '/words' do
     # content is set to application/json
     content_type :json
     # queries all words in the table and returns it as a JSON document to display on the page 
-    conn.exec('SELECT word, definition FROM words').each {|doc| results << doc}.to_a.to_json
+    conn.exec('SELECT word, definition FROM words').map {|doc| doc}.to_json
 end
 
 # The PUT route will save a word and its definition
