@@ -34,5 +34,6 @@ put '/message' do
     message = params[:message]
     queue.publish(message, :content_type => "text/plain", :key => routing_key)
     message.to_s
+    status 200
 end
 

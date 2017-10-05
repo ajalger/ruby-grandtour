@@ -24,5 +24,6 @@ put '/words' do
     # when the 'Add' button is clicked it will create a new document to send to the database
     # params[:] grabs the word and the description from the HTML input boxes
     r.hset('words', params[:word], params[:definition])
+    status 200
 end
 

@@ -54,5 +54,6 @@ put '/words' do
     # params[:] grabs the word and the description from the HTML input boxes
     new_word = {word: params[:word], definition: params[:definition]}
     r.table('words').insert(new_word).run(conn)
+    status 200
 end
 

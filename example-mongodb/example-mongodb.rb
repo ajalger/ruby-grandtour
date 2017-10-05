@@ -28,5 +28,6 @@ put '/words' do
     # params[:] grabs the word and the description from the HTML input boxes
     new_word = {word: params[:word], definition: params[:definition]}
     collection.insert_one(new_word)
+    status 200
 end
 

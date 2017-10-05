@@ -26,5 +26,6 @@ end
 put '/words' do
     # save words in Etcd using the '/word' as a key and 'definition' as the value
     conn.put("/#{params[:word]}", params[:definition])
+    status 200
 end
 

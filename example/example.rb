@@ -15,6 +15,7 @@ put '/words' do
     # when the 'Add' button is clicked it will create a new document to send to the database
     # grabs the word and the description from the HTML input boxes
     new_word = {word: params[:word], definition: params[:definition]}
+    status 200
 end
 
 

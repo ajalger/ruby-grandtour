@@ -33,5 +33,6 @@ put '/words' do
     # params[:] grabs the word and the description from the HTML input boxes
     new_word = {word: params[:word], definition: params[:definition]}
     client.index index: 'words', type: 'word', body: new_word, refresh: true
+    status 200
 end
 
