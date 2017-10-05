@@ -17,7 +17,6 @@ routing_key = 'words'
 q_name = 'sample'
 
 channel = conn.create_channel
-channel.prefetch(1)
 exchange = channel.direct(exchange_name)    
 queue = channel.queue(q_name, :durable => true, :exclusive => false).bind(exchange, :key => routing_key)
 
@@ -29,12 +28,11 @@ get '/message' do
     content_type :json
     delivery_info, properties, payload = queue.pop
     payload.nil? ? nil.to_json : payload.to_json
-
 end
 
 put '/message' do
     message = params[:message]
-    queue.publish(message, :content_type => "text/plain", :key => 'words')
+    queue.publish(message, :content_type => "text/plain", :key => routing_key)
     message.to_s
 end
 
