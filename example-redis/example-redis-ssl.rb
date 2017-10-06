@@ -2,12 +2,12 @@ require 'sinatra'
 require 'redis'
 
 # variable stores your Compose Redis connection URL and certificate paths
-compose_redis_url = ENV['COMPOSE_REDIS_URL']
+compose_rediss_url = ENV['COMPOSE_REDIS_URL']
 path_to_rediscert = ENV['PATH_TO_REDIS_CERT']
 
 # set up a new Redis client
 r = Redis.new(
-    url: compose_redis_url, 
+    url: compose_rediss_url, 
     ssl_params: {
         ca_file: path_to_rediscert
     }
