@@ -19,13 +19,13 @@ get '/words' do
     # set content to application/json
     content_type :json
     # get all the words starting with '/' and return those as a JSON array
-    conn.get('/', range_end: '\0').kvs.map {|w| {word: w.key, definition: w.value}}.to_a.to_json
+    conn.get('/grand_tour/words/', range_end: '\0').kvs.map {|w| {word: w.key, definition: w.value}}.to_a.to_json
 end
 
 # The PUT route will save a word and its definition 
 put '/words' do
     # save words in Etcd using the '/word' as a key and 'definition' as the value
-    conn.put("/#{params[:word]}", params[:definition])
+    conn.put("/grand_tour/words/#{params[:word]}", params[:definition])
     status 200
 end
 
