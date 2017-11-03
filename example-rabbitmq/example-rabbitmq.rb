@@ -27,7 +27,13 @@ end
 get '/message' do
     content_type :json
     delivery_info, properties, payload = queue.pop
-    payload.nil? ? nil.to_json : payload.to_json
+    
+    if payload.nil?
+        nil.to_json
+    else 
+        payload.to_json
+    end    
+    
 end
 
 put '/message' do
